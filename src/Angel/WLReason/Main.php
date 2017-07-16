@@ -13,7 +13,7 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
     $this->saveDefaultConfig();
   }
   
-  public function onLogin(\pocketmine\event\player\PlayerJoinEvent $ev){
+  public function onLogin(\pocketmine\event\player\PlayerPreLoginEvent $ev){
     if(!$this->getServer()->isWhitelisted(($p = $ev->getPlayer()->getName()))){
       $p->kick($this->getConfig()->get("reason"), false);
     }
