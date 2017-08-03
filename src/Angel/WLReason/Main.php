@@ -14,8 +14,9 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
   }
   
   public function onLogin(\pocketmine\event\player\PlayerPreLoginEvent $ev){
-    if(!$this->getServer()->isWhitelisted(($p = $ev->getPlayer()->getName()))){
-      $p->kick($this->getConfig()->get("reason"), false);
+    if(!$this->getServer()->isWhitelisted(($p = $ev->getPlayer()))){
+      $ev->setKickMessage($this->getConfig()->get("reason"));
+      $ev->setCancelled(true);
     }
   }
 }
